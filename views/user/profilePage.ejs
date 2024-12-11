@@ -20,7 +20,7 @@
          </span>
       </div>
       <div class="mt-4">
-         <p><%- user.bio.replace(/\r\n/g, '<br>') %></p>
+         <p><%- (user.bio || 'No bio available.').replace(/\r\n/g, '<br>') %></p>
       </div>
       <% if(user.username===currentUser.username) {%>
          <a href="/user/profile/edit"

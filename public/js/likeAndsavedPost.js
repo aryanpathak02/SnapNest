@@ -5,7 +5,7 @@ function sendPostRequest(url, postId) {
 
 // Function to handle saving a post
 function savePost(postId, btn) {
-    sendPostRequest('http://localhost:8080/savedPost', postId)
+    sendPostRequest('https://snapnest-u9zi.onrender.com/savedPost', postId)
         .then(response => {
             console.log('Post save response:', response.data);
 
@@ -20,7 +20,7 @@ function savePost(postId, btn) {
 
 // Function to handle liking a post
 function likePost(postId, btn) {
-    sendPostRequest('http://localhost:8080/like', postId)
+    sendPostRequest('https://snapnest-u9zi.onrender.com/like', postId)
         .then(response => {
             console.log('Post like response:', response.data);
 

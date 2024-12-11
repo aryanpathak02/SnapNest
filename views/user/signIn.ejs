@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <%- include("../components/flash.ejs") -%>
+
+    <section
+        class="w-full sm:w-[450px] mx-auto sm:h-screen flex items-center flex-col sm:justify-evenly">
+        <div class="flex items-center flex-col my-4">
+            <img class="w-60" src="https://i.pinimg.com/originals/5c/37/14/5c3714cba608140b1d6c15ce3f699068.gif" alt="">
+            <h1 class="text-2xl font-bold my-4 text-center">Sign In</h1>
+        </div>
+
+        <form class="flex items-center justify-center flex-col space-y-6 my-6 w-full" action="/user/signup" method="POST">
+            <div class="w-[90%] sm:w-3/4">
+                <label class="mb-1 inline-block" for="username">Username</label>
+                <input type="text" id="username" name="username" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2" required>
+            </div>
+            <div class="w-[90%] sm:w-3/4">
+                <label class="mb-1 inline-block" for="password">Password</label>
+                <input type="password" id="password" name="password" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2" required>
+            </div>
+            <button class="bg-black px-4 py-2 text-white mb-3 rounded-xl mx-4 hover:bg-white border hover:text-black border-black">Register</button>
+
+        </form>
+        <p class="my-6">Not Having an account <a class="text-blue-500 hover:underline" href="/user/signup">SignUp</a></p>
+
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<% layout('./main/layout') %>
+<section class="p-3 h-screen pb-16 overflow-auto">
+    <h1 class="text-xl font-bold my-2">Edit Post</h1>
+    <form action="/post/<%= post._id %>?_method=PUT" method="POST"  data-image-required="true">
+        <div class="w-full h-60 bg-zinc-200 rounded-xl overflow-auto my-2">
+            <img id="image-preview"  class="w-full h-full object-contain" src="<%= post.photo.path %>" alt="new image">
+        </div>
+        <div class="mb-2">
+            <label class="my-2 inline-block text-sm focus:outline-none font-medium" for="description">Description(Optional)</label>
+            <textarea name="description" id="description" class="w-full bg-zinc-200 rounded-md pl-2 py-2 focus:outline-none" placeholder="Add description"><%= post.description %></textarea>
+        </div>
+        <div class="mb-2">
+            <label class="my-2 inline-block text-sm font-medium" for="city">City(Optional)</label>
+            <input class="w-full bg-zinc-200 rounded-md p-2 focus:outline-none"  value="<%= post.city %>" name="city" type="text" placeholder="Add a City">
+        </div>
+        <button class="bg-black w-full text-white px-4 py-2 rounded-xl text-sm my-4 hover:text-black hover:bg-white hover:border border-black" >Submit</button>
+    </form>
+</section>
+
+

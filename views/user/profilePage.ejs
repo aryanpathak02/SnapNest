@@ -1,0 +1,119 @@
+<% layout('./main/layout') %>
+   <section class="h-screen overflow-auto pb-16 sm:border px-4 sm:px-6">
+
+      <h1 class="text-center text-xl font-bold mb-4 mt-6">
+         <%= user.username %>
+      </h1>
+      <div class="w-full flex items-center justify-between">
+         <img class="h-20 w-20 rounded-full object-cover" src="<%=user.photo.path %>" alt="user_Image">
+         <span class="flex items-center flex-col justify-center">
+            <p><%= createdPosts.length %></p>
+            <p>Post</p>
+         </span>
+         <span class="flex items-center flex-col justify-center">
+            <p><%= user.follower.length %></p>
+            <p>Followers</p>
+         </span class="flex items-center flex-col justify-center">
+         <span class="flex items-center flex-col justify-center">
+            <p><%= user.following.length %></p>
+            <p>Following</p>
+         </span>
+      </div>
+      <div class="mt-4">
+         <p><%- user.bio.replace(/\r\n/g, '<br>') %></p>
+      </div>
+      <% if(user.username===currentUser.username) {%>
+         <a href="/user/profile/edit"
+            class="border w-full p-2 rounded-lg border-black my-4 inline-block text-center">Edit profile</a>
+         <% } else { %>
+            <form action="/follow/<%= user._id %>" method="POST">
+               <button class="border w-full p-2 rounded-lg border-black my-4"><%=  user.follower.includes(currentUser._id) ? 'Unfollow' : 'Follow' %></button>
+            </form>
+            <% } %>
+
+               <div class="flex items-center justify-evenly">
+                  <span id="savePostBtn"
+                     class="w-1/2 border-b border-black  flex items-center justify-center pt-2 pb-4">
+                     <svg class="w-8 h-8 cursor-pointer" viewBox="0 -0.5 18 18" xmlns="http://www.w3.org/2000/svg"
+                        fill="#000000" stroke="#000000" stroke-width="0.00018">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                           <path fill="#000000" fill-rule="evenodd"
+                              d="M474.188327,259.775909 L480.842912,259.775909 L477.549999,256.482996 L474.375904,259.65709 C474.321124,259.71187 474.256777,259.751373 474.188327,259.775909 Z M474,258.618781 L474,247.775909 L486,247.775909 L486,254.968826 L483.657827,252.626653 C483.470927,252.439753 483.148791,252.4342 482.953529,252.629462 C482.940375,252.642616 482.928101,252.656403 482.916711,252.670736 C482.913161,252.674075 482.909651,252.677479 482.906183,252.680947 L479.034173,256.552957 L477.918719,255.437503 C477.808988,255.327771 477.655516,255.279359 477.507786,255.29536 C477.387162,255.302309 477.267535,255.351246 477.17513,255.44365 L474,258.618781 Z M482.257125,259.775909 L486,259.775909 L486,256.377007 L485.996984,256.380023 L483.309152,253.692192 L479.74128,257.260064 L482.257125,259.775909 Z M487,259.406871 L487.960593,259.541874 C488.51207,259.619379 489.020377,259.235606 489.097766,258.684953 L490.765938,246.815293 C490.843443,246.263816 490.459671,245.75551 489.909017,245.678121 L478.039358,244.009949 C477.487881,243.932444 476.979574,244.316216 476.902185,244.86687 L476.633887,246.775909 L474.006845,246.775909 C473.449949,246.775909 473,247.226689 473,247.782754 L473,259.769063 C473,260.32596 473.45078,260.775909 474.006845,260.775909 L485.993155,260.775909 C486.550051,260.775909 487,260.325128 487,259.769063 L487,259.406871 Z M487,258.397037 L488.10657,258.552556 L489.776647,246.669339 L477.89343,244.999262 L477.643739,246.775909 L485.993155,246.775909 C486.54922,246.775909 487,247.225857 487,247.782754 L487,258.397037 Z"
+                              transform="translate(-473 -244)"></path>
+                        </g>
+                     </svg>
+                  </span>
+                  <span id="saveOtherPostBtn" class="w-1/2 flex items-center border-black justify-center pt-2 pb-4">
+                     <svg class="w-8 h-8 cursor-pointer" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                           <path
+                              d="M5 6.2C5 5.07989 5 4.51984 5.21799 4.09202C5.40973 3.71569 5.71569 3.40973 6.09202 3.21799C6.51984 3 7.07989 3 8.2 3H15.8C16.9201 3 17.4802 3 17.908 3.21799C18.2843 3.40973 18.5903 3.71569 18.782 4.09202C19 4.51984 19 5.07989 19 6.2V21L12 16L5 21V6.2Z"
+                              stroke="#000000" stroke-width="1.08" stroke-linejoin="round"></path>
+                        </g>
+                     </svg>
+                  </span>
+               </div>
+            
+
+               <div id="savePostSection" class="grid gap-2 py-2 sm:py-4 grid-cols-3">
+                  <% if(!createdPosts.length) {%>
+                  <div class="col-span-3 flex items-center flex-col py-6">
+                     <img class="w-60 " src="/img/no-post.png" alt="no-post-image">
+                     <p class="text-sm my-2">No posts available. Please upload one to get started</p>
+                  </div>
+                  <% } %>
+
+                  <% for(let post of createdPosts) {%>
+                     <a href="/post/<%=post._id %>">
+                        <img class="h-48 bg-black object-contain font-medium" loading="lazy" src="<%= post.photo.path %>"
+                           alt="images">
+                     </a>
+                     <% } %>
+               </div>
+               <div id="saveOtherPostSection" class="grid gap-2 py-2 sm:py-4 grid-cols-3 hidden">
+                  <% if(!savedPosts.length) {%>
+                     <div class="col-span-3 flex items-center flex-col py-6">
+                        <img class="w-60 " src="/img/no-post.png" alt="no-post-image">
+                        <p class="text-sm my-2 font-medium">No posts saved.</p>
+                     </div>
+                     <% } %>
+                  <% for(let post of savedPosts) {%>
+                     
+                     <a href="/post/<%=post._id %>">
+                        <img class="h-48 bg-black object-contain" loading="lazy" src="<%= post.photo.path %>"
+                           alt="images">
+                     </a>
+                     
+                     <% } %>
+               </div>
+
+   
+   </section>
+
+   <script>
+      const toggleSection = (showSection, hideSection, activeBtn, inactiveBtn) => {
+         showSection.classList.remove('hidden');
+         hideSection.classList.add('hidden');
+         activeBtn.classList.add('border-b');
+         inactiveBtn.classList.remove('border-b');
+      };
+
+      const savePostBtn = document.getElementById('savePostBtn');
+      const saveOtherPostBtn = document.getElementById('saveOtherPostBtn');
+      const savePostSection = document.getElementById('savePostSection');
+      const saveOtherPostSection = document.getElementById('saveOtherPostSection');
+
+      savePostBtn.addEventListener('click', () => {
+         toggleSection(savePostSection, saveOtherPostSection, savePostBtn, saveOtherPostBtn);
+      });
+
+      saveOtherPostBtn.addEventListener('click', () => {
+         toggleSection(saveOtherPostSection, savePostSection, saveOtherPostBtn, savePostBtn);
+      });
+
+   </script>

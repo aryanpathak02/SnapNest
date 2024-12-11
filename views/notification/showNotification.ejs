@@ -1,0 +1,28 @@
+<% layout('./main/layout') %>
+<section class="h-screen overflow-auto">
+    <h1 class="text-xl my-6 font-bold px-2">Notification</h1>
+    <% if (!notifications.length) { %>
+        <div class="flex items-center flex-col justify-center h-3/4">
+            <img class="w-72" src="/img/notifications.gif" alt="notification_logo">
+            <h3 class="text-xl font-semibold my-2 uppercase">No Notification</h3>
+            <hr class="border border-black w-16 my-4">
+            <p class="text-sm">We'll notify you when there is something new</p>
+        </div>
+    <% } else { %>
+        <% for (let notification of notifications.reverse()) { %>
+            <% const profileImg = notification.fromUser?.photo?.path || '/default-profile.jpg'; %>
+            <a href="<%= notification.type === 'follow' ? `/user/profile/${currentUser.username}` : `/post/${notification.post._id}` %>">
+                <div class="flex items-center justify-between cursor-pointer hover:bg-zinc-100 py-4 px-4 rounded-md">
+                    <img class="w-12 h-12 bg-red-400 rounded-full object-cover" src="<%= profileImg %>" alt="profile">
+                    <p class="w-full px-4">
+                        <%= notification.message %>
+                        <span class="text-zinc-500 ml-2"><%= notification.formattedCreatedAt %></span>
+                    </p>
+                    <% if (notification.type !== 'follow') { %>
+                        <img class="h-12 w-12 rounded-md object-cover" src="<%= notification.post?.photo?.path || '/default-post.jpg' %>" alt="">
+                    <% } %>
+                </div>
+            </a>
+        <% } %>
+    <% } %>
+</section>

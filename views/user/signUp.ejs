@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <section class="w-full sm:w-[450px] mx-auto h-screen flex items-center flex-col sm:justify-evenly py-4">
+        <div>
+            <img class="w-60" src="https://i.pinimg.com/originals/5c/37/14/5c3714cba608140b1d6c15ce3f699068.gif"
+                alt="logo_user">
+            <h1 class="text-2xl font-bold my-4 text-center">SignUp</h1>
+        </div>
+        <form action="/user/signin" method="POST" class="w-3/4 flex items-center justify-center flex-col">
+            <div class="mb-4 w-full">
+                <label class="mb-1 inline-block" for="name">Name</label>
+                <input type="text" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2" name="name"
+                    placeholder="Enter Your name" required>
+            </div>
+            <div class="mb-4 w-full">
+                <label class="mb-1 inline-block" for="name">Username</label>
+                <input type="text" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2" name="username"
+                    placeholder="Enter Username" required>
+            </div>
+            <div class="mb-4 w-full">
+                <label class="mb-1 inline-block" for="name">Email</label>
+                <input type="email" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2" name="email"
+                    placeholder="Enter email" required>
+            </div>
+            <div class="mb-4 w-full">
+                <label class="mb-1 inline-block" for="name">Password</label>
+                <input type="password" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2"
+                    name="password" placeholder="Enter password" required>
+            </div>
+            <button class="bg-black px-4 py-2 text-white mb-3 rounded-xl mx-4 hover:bg-white border hover:text-black border-black">Register</button>
+        </form>
+        <p class="my-9 lg:my-4 ">Already having an account <a class="text-blue-500 hover:underline" href="/user/signin">Signin</a></p>
+    </section>
+</body>
+
+</html>

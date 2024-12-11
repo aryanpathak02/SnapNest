@@ -1,0 +1,21 @@
+<section>
+
+</section><% layout('./main/layout') %>
+<section class="p-3 h-screen pb-16 overflow-auto">
+    <h1 class="text-xl font-bold my-2">Add new Story</h1>
+    <form action="/story/save" method="POST" enctype="multipart/form-data" data-image-required="true">
+        <label for="image" class=" font-medium">Add an image</label>
+        <div class="w-full h-[60vh] bg-zinc-200 rounded-xl overflow-auto my-2">
+            <img id="image-preview"  class="w-full h-full object-contain hidden" src="" alt="new image">
+            <input id="image-input" class="hidden" type="file" name="photo" required>
+        </div>
+        <div class="flex items-center justify-around" >
+            <button id="upload-btn" type="button" class="bg-white text-black px-4 py-2 rounded-xl text-sm my-2 hover:text-black hover:bg-white border border-black">Add</button>
+            <button id="remove-btn" type="button" class="bg-white text-black px-4 py-2 rounded-xl text-sm my-2 hover:text-black hover:bg-white border border-black hidden">Remove</button>
+        </div>
+        <button class="bg-black w-full text-white px-4 py-2 rounded-xl text-sm my-4 hover:text-black hover:bg-white hover:border border-black">Submit</button>
+    </form>
+</section>
+
+
+<script src="/js/imageManager.js"></script>

@@ -26,7 +26,7 @@
         <div class="flex gap-2 overflow-x-auto my-4 px-2">
             <a href="/story/save">
                 <div
-                    class="flex items-center justify-center w-20 p-5 cursor-pointer h-20 rounded-full bg-zinc-700 border border-black">
+                    class="flex items-center justify-center w-16 p-5 cursor-pointer h-16 rounded-full bg-zinc-700 border border-black">
                     <svg class="h-10 w-10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -50,7 +50,7 @@
             </a>
             <% for(let status of statuses ) {%>
             <div class="storys">
-                <img id="userStory" class="w-20 h-20 rounded-full object-cover cursor-pointer" src="<%= status.user.photo.path %>" alt="">
+                <img id="userStory" class="w-16 h-16 rounded-full object-cover cursor-pointer" src="<%= status.user.photo.path %>" alt="">
                 <p id="username" class="hidden"><%= status.user.username %></p>
                 <p id="time" class="hidden"><%= status.formattedCreatedAt %></p>
                 <img class="hidden" id="userimage" src="<%= status.photo.path %>" alt="user_status_image">
@@ -60,7 +60,8 @@
 
 
         <% for(let post of posts.reverse()) {%>
-            <div class="m-2 p-2 p-5 border border-black rounded-xl">
+            <div class="m-2 p-5 border border-black rounded-xl">
+                <a href="/user/profile/<%= post.user.username %>">
                 <div class="flex text-sm gap-x-3">
                     <img class="h-12 w-12 rounded-full object-cover" loading="lazy" src="<%= post.user.photo.path %>"
                         alt="profile_pic">
@@ -75,6 +76,7 @@
                         </p>
                     </div>
                 </div>
+                 </a>
                 <img class="my-4 w-full mx-auto rounded-xl object-contain" loading="lazy" src="<%= post.photo.path %>"
                     alt="image">
                 <div class="flex items-center justify-between mb-4">

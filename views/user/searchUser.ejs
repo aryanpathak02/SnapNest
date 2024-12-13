@@ -21,7 +21,7 @@
         </div>
         <% if(posts) {%>
         <div class="grid gap-2 p-4 grid-cols-3 ">
-            <% for(let post of posts) {%>
+            <% for(let post of posts.reverse()) {%>
                 <a href="/post/<%=post._id %>">
                     <img class="h-48 bg-black object-contain" src="<%= post.photo.path %>" alt="images">
                 </a>

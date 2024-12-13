@@ -5,31 +5,42 @@ function sendPostRequest(url, postId) {
 
 // Function to handle saving a post
 function savePost(postId, btn) {
+    // Update DOM immediately to reflect the change
+    const originalColor = btn.getAttribute('fill');
+    btn.setAttribute('fill', '#000000'); 
     sendPostRequest('https://snapnest-u9zi.onrender.com/savedPost', postId)
         .then(response => {
             console.log('Post save response:', response.data);
-
-            // Use the server response to update the button state
             const { isSaved } = response.data;
             btn.setAttribute('fill', isSaved ? '#000000' : 'none');
         })
         .catch(error => {
             console.error('Error saving the post:', error);
+            alert('Saving the post failed. Please try again.');
+
+            // Revert the DOM update if error occurs
+            btn.setAttribute('fill', originalColor);
         });
 }
 
 // Function to handle liking a post
 function likePost(postId, btn) {
+    // Update DOM immediately to reflect the change
+    const originalColor = btn.getAttribute('fill');
+    btn.setAttribute('fill', '#e00b0b'); 
+
     sendPostRequest('https://snapnest-u9zi.onrender.com/like', postId)
         .then(response => {
             console.log('Post like response:', response.data);
-
-            // Use the server response to update the button state
             const { isLiked } = response.data;
             btn.setAttribute('fill', isLiked ? '#e00b0b' : 'none');
         })
         .catch(error => {
             console.error('Error liking the post:', error);
+            alert('Liking the post failed. Please try again.');
+
+            
+            btn.setAttribute('fill', originalColor);
         });
 }
 
@@ -40,7 +51,7 @@ function attachEventListeners() {
 
     // Attach event listeners for saving posts
     savedPostBtns.forEach(btn => {
-        if (!btn.dataset.listenerAttached) { // Avoid duplicate listeners
+        if (!btn.dataset.listenerAttached) { 
             btn.addEventListener('click', () => {
                 const postId = btn.getAttribute('postid');
                 savePost(postId, btn);

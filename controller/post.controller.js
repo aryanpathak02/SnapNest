@@ -66,7 +66,13 @@ module.exports.renderingSinglePost =  wrapAsync(async (req, res) => {
             select: 'username photo' 
         }
     }).populate('user').lean();
-    // console.log(post)
+    post.timeAgo = formatTimeAgo(post.createdAt);
+
+    // Format each comment's `createdAt`
+    post.comments = post.comments.map((comment) => ({
+      ...comment,
+      timeAgo: formatTimeAgo(comment.createdAt),
+    }));
     res.render('./post/singlePost', { post });
 })
 

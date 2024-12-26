@@ -76,11 +76,6 @@ app.get('/', (req, res) => {
     res.send(`Hi, I am root`);
 });
 
-app.use((err, req, res, next) => {
-    const { status = 500, message = "Something went wrong" } = err;
-    res.status(status).send(message);
-});
-
 app.get('/delete-all-data', async (req, res) => {
   try {
     const db = mongoose.connection;
@@ -99,6 +94,11 @@ app.get('/delete-all-data', async (req, res) => {
     console.error('Error deleting data:', error);
     res.status(500).json({ message: 'An error occurred while deleting data.', error: error.message });
   }
+});
+
+app.use((err, req, res, next) => {
+    const { status = 500, message = "Something went wrong" } = err;
+    res.status(status).send(message);
 });
 
 app.get('*', (req, res) => {

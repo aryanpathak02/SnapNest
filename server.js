@@ -19,6 +19,7 @@ const flash = require("connect-flash");
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const connectMongo = require('connect-mongo');
+const mongoose = require('mongoose');
 const port = process.env.PORT || 8080;
 
 connectDb();

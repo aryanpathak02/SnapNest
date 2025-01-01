@@ -20,9 +20,15 @@
                 </button>
             </form>
         </div>
+<<<<<<< HEAD
         <% if(posts){%>
         <div class="grid gap-2 py-4 grid-cols-3  ">
             <% for(let post of posts) {%>
+=======
+        <% if(posts) {%>
+        <div class="grid gap-2 p-4 grid-cols-3 ">
+            <% for(let post of posts.reverse()) {%>
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
                 <a href="/post/<%=post._id %>">
                     <img class="h-52 w-52 bg-black object-cover rounded-md" src="<%= post.photo.path %>" alt="images">
                 </a>

@@ -35,6 +35,7 @@ const postSchema = new mongoose.Schema({
     timestamps: true,
 });
 
+<<<<<<< HEAD
 postSchema.post('findOneAndDelete', async (post) => {
     if (!post) return;
 
@@ -47,6 +48,24 @@ postSchema.post('findOneAndDelete', async (post) => {
     } catch (err) {
         console.error('Error during post deletion cleanup:', err.message);
     }
+=======
+
+
+postSchema.post('findOneAndDelete', async (post) => {
+   if (!post) return;
+
+   try {
+      // Delete all comments associated with the post
+      await Comment.deleteMany({ _id: { $in: post.comments } });
+
+      // Delete all notifications related to this post
+      await Notification.deleteMany({ post: post._id });
+
+      console.log('Post and associated data (comments, notifications) deleted successfully');
+   } catch (err) {
+      console.error('Error during post deletion cleanup:', err.message);
+   }
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
 });
 
 const Post = mongoose.model('Post', postSchema);

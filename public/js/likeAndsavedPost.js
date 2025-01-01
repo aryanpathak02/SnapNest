@@ -8,7 +8,11 @@ function savePost(postId, btn) {
     // Update DOM immediately to reflect the change
     const originalColor = btn.getAttribute('fill');
     btn.setAttribute('fill', '#000000'); 
+<<<<<<< HEAD
     sendPostRequest('http://localhost:8080/savedPost', postId)
+=======
+    sendPostRequest('https://snapnest-u9zi.onrender.com/savedPost', postId)
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
         .then(response => {
             console.log('Post save response:', response.data);
             const { isSaved } = response.data;
@@ -45,6 +49,7 @@ function savePost(postId, btn) {
 // }
 function likePost(postId, btn) {
     // Update DOM immediately to reflect the change
+<<<<<<< HEAD
     const pathElement = btn.querySelector('path');
     const originalFill = pathElement.getAttribute('fill');
     const originalStroke = pathElement.getAttribute('stroke');
@@ -54,6 +59,12 @@ function likePost(postId, btn) {
     pathElement.setAttribute('stroke', 'none');
 
     sendPostRequest('http://localhost:8080/like', postId)
+=======
+    const originalColor = btn.getAttribute('fill');
+    btn.setAttribute('fill', '#e00b0b'); 
+
+    sendPostRequest('https://snapnest-u9zi.onrender.com/like', postId)
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
         .then(response => {
             console.log('Post like response:', response.data);
             const { isLiked } = response.data;
@@ -66,9 +77,14 @@ function likePost(postId, btn) {
             console.error('Error liking the post:', error);
             alert('Liking the post failed. Please try again.');
 
+<<<<<<< HEAD
             // Revert to the original state in case of an error
             pathElement.setAttribute('fill', originalFill);
             pathElement.setAttribute('stroke', originalStroke);
+=======
+            
+            btn.setAttribute('fill', originalColor);
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
         });
 }
 

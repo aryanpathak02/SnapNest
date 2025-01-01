@@ -19,6 +19,7 @@ const flash = require("connect-flash");
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const connectMongo = require('connect-mongo');
+const mongoose = require('mongoose');
 const port = process.env.PORT || 8080;
 
 connectDb();
@@ -75,6 +76,26 @@ app.use('/story', StatusRoute);
 app.get('/', (req, res) => {
     res.send(`Hi, I am root`);
 });
+
+// app.get('/delete-all-data', async (req, res) => {
+//   try {
+//     const db = mongoose.connection;
+
+//     // List all collections in the database
+//     const collections = await db.db.listCollections().toArray();
+
+//     // Drop each collection
+//     for (const collection of collections) {
+//       await db.db.collection(collection.name).drop();
+//       console.log(`Dropped collection: ${collection.name}`);
+//     }
+
+//     res.status(200).json({ message: 'All data has been deleted successfully!' });
+//   } catch (error) {
+//     console.error('Error deleting data:', error);
+//     res.status(500).json({ message: 'An error occurred while deleting data.', error: error.message });
+//   }
+// });
 
 app.use((err, req, res, next) => {
     const { status = 500, message = "Something went wrong" } = err;

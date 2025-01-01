@@ -7,31 +7,48 @@
       <div class="w-full md:w-3/4 flex items-center justify-between ">
          <img class="h-20 w-20 rounded-full object-cover" src="<%=user.photo.path %>" alt="user_Image">
          <span class="flex items-center flex-col justify-center">
-            <p><%= createdPosts.length %></p>
+            <p>
+               <%= createdPosts.length %>
+            </p>
             <p>Post</p>
          </span>
          <span class="flex items-center flex-col justify-center">
-            <p><%= user.follower.length %></p>
+            <p>
+               <%= user.follower.length %>
+            </p>
             <p>Followers</p>
          </span class="flex items-center flex-col justify-center">
          <span class="flex items-center flex-col justify-center">
-            <p><%= user.following.length %></p>
+            <p>
+               <%= user.following.length %>
+            </p>
             <p>Following</p>
          </span>
       </div>
+<<<<<<< HEAD
       <div class="mt-4 md:my-6">
+=======
+      <div class="my-5">
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
          <p><%- (user.bio || 'No bio available.' ).replace(/\r\n/g, '<br>' ) %></p>
       </div>
       <% if(user.username===currentUser.username) {%>
          <a href="/user/profile/edit"
          class="inline-block bg-white w-full md:w-fit text-center font-semibold hover:bg-black hover:border border-white hover:text-white px-4 py-2 rounded-xl text-sm my-4 text-black">Edit profile</a>
          <% } else { %>
+<<<<<<< HEAD
             <form action="/follow/<%= user._id %>" class="inline-block w-full" method="POST">
                <button class="border w-full  font-medium inline-block p-2 rounded-lg border-black bg-white text-black my-4 "><%=  user.follower.includes(currentUser._id) ? 'Unfollow' : 'Follow' %></button>
+=======
+            <form action="/follow/<%= user._id %>" method="POST">
+               <button class="border w-full p-2 rounded-lg border-black my-4">
+                  <%= user.follower.includes(currentUser._id) ? 'Unfollow' : 'Follow' %>
+               </button>
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
             </form>
             <% } %>
 
-               <div class="flex items-center justify-evenly">
+               <div class="flex items-center justify-evenly mb-3">
                   <span id="savePostBtn"
                      class="w-1/2 border-b border-white  flex items-center justify-center pt-2 pb-4">
                      <svg class="w-8 h-8 cursor-pointer" viewBox="0 -0.5 18 18" xmlns="http://www.w3.org/2000/svg"
@@ -58,10 +75,11 @@
                      </svg>
                   </span>
                </div>
-            
+
 
                <div id="savePostSection" class="grid gap-2 py-4 sm:py-4 md:grid-cols-3 grid-cols-3 ">
                   <% if(!createdPosts.length) {%>
+<<<<<<< HEAD
                   <div class="col-span-3 flex items-center flex-col py-6">
                      <img class="w-60" src="/img/no-post.png" alt="no-post-image">
                      <p class="text-sm my-2">No posts available. Please upload one to get started</p>
@@ -73,7 +91,20 @@
                         <img class="h-52 w-52 rounded-md bg-black object-cover font-medium" loading="lazy" src="<%= post.photo.path %>"
                            alt="images">
                      </a>
+=======
+                     <div class="col-span-3 flex items-center flex-col py-6">
+                        <img class="w-60 " src="/img/no-post.png" alt="no-post-image">
+                        <p class="text-sm my-2">No posts available. Please upload one to get started</p>
+                     </div>
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
                      <% } %>
+
+                        <% for(let post of createdPosts.reverse()) {%>
+                           <a href="/post/<%=post._id %>">
+                              <img class="h-48 bg-black object-contain font-medium" loading="lazy"
+                                 src="<%= post.photo.path %>" alt="images">
+                           </a>
+                           <% } %>
                </div>
                <div id="saveOtherPostSection" class="grid gap-2 py-4 sm:py-4  grid-cols-3 hidden">
                   <% if(!savedPosts.length) {%>
@@ -82,6 +113,7 @@
                         <p class="text-sm my-2 font-medium">No posts saved.</p>
                      </div>
                      <% } %>
+<<<<<<< HEAD
                   <% for(let post of savedPosts) {%>
                      
                      <a href="/post/<%=post._id %>">
@@ -90,9 +122,19 @@
                    
                      
                      <% } %>
+=======
+                        <% for(let post of savedPosts) {%>
+
+                           <a href="/post/<%=post._id %>">
+                              <img class="h-48 bg-black object-contain" loading="lazy" src="<%= post.photo.path %>"
+                                 alt="images">
+                           </a>
+
+                           <% } %>
+>>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
                </div>
 
-   
+
    </section>
 
    <script>

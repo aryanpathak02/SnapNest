@@ -9,6 +9,8 @@ const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 // Fetch the form and determine if the image is required
 const form = document.querySelector('form');
 const isImageRequired = form && form.querySelector('input[name="imageRequired"]')?.value === 'true';
+const toggleButton = document.getElementById("toggleButton");
+
 
 // Open the file picker when the upload button is clicked
 if (uploadBtn) {
@@ -63,6 +65,10 @@ if (removeBtn) {
 // Form submission logic
 if (form) {
   form.addEventListener('submit', (e) => {
+
+    toggleButton.innerHTML = `<svg class="w-8 h-7 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="#000000" stroke="#000000" stroke-width="15" r="15" cx="40" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></circle><circle fill="#000000" stroke="#000000" stroke-width="15" r="15" cx="100" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></circle><circle fill="#000000" stroke="#000000" stroke-width="15" r="15" cx="160" cy="65"><animate attributeName="cy" calcMode="spline" dur="2" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></circle></svg>  Please wait`;s
+
+    toggleButton.disabled = true;
     // Ensure image is uploaded if required
     if (isImageRequired && (!imageInput.files || !imageInput.files[0])) {
       e.preventDefault(); // Prevent form submission

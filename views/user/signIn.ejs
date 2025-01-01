@@ -9,30 +9,43 @@
 </head>
 
 <body>
-  <%- include("../components/flash.ejs") -%>
+    <%- include("../components/flash.ejs") -%>
 
-    <section
-        class="w-full sm:w-[450px] mx-auto sm:h-screen flex items-center flex-col sm:justify-evenly">
-        <div class="flex items-center flex-col my-4">
-            <img class="w-60" src="https://i.pinimg.com/originals/5c/37/14/5c3714cba608140b1d6c15ce3f699068.gif" alt="">
-            <h1 class="text-2xl font-bold my-4 text-center">Sign In</h1>
-        </div>
+        <section class="w-full flex items-center justify-center  h-[100vh] text-white bg-black">
+            <div class="w-full md:w-1/2 h-full flex items-center justify-center  flex-col">
+                <div class="flex items-center flex-col my-4">
+                    <h1 class="text-3xl sm:text-4xl font-bold my-1 text-center">SnapNest</h1>
+                </div>
+                <p class="text-xl md:text-2xl max-[330px]:px-6 font-bold my-1 text-center">Access your main account</p>
+                <p class="text-xs md:text-sm text-[#6878A3]">To use SnapNest, please enter your details</p>
 
-        <form class="flex items-center justify-center flex-col space-y-6 my-6 w-full" action="/user/signup" method="POST">
-            <div class="w-[90%] sm:w-3/4">
-                <label class="mb-1 inline-block" for="username">Username</label>
-                <input type="text" id="username" name="username" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2" required>
+                <form class="flex items-center justify-center flex-col space-y-6 my-6 w-full" action="/user/signup"
+                    method="POST">
+                    <div class="w-[90%] sm:w-3/5">
+                        <label class="mb-1 inline-block" for="username">Username</label>
+                        <input type="text" id="username" name="username"
+                            class="w-full bg-zinc-200 rounded-md pl-2 text-black focus:outline-none py-2" placeholder="Enter Username" required>
+                    </div>
+                    <div class="w-[90%] sm:w-3/5">
+                        <label class="mb-1 inline-block" for="password">Password</label>
+                        <input type="password" id="password" name="password"
+                            class="w-full bg-zinc-200 rounded-md pl-2 text-black focus:outline-none py-2" placeholder="Enter Pasword" required>
+                    </div>
+                    <div class="w-[90%] sm:w-3/5">
+                        <button
+                            class="bg-white w-full font-semibold hover:bg-black hover:border border-white hover:text-white px-4 py-2 rounded-md text-sm my-4 text-black">Register</button>
+                    </div>
+                </form>
+
+                <p class="my-6 text-sm text-center">Not Having an account <a class="text-blue-500 hover:underline"
+                        href="/user/signup">SignUp</a></p>
+
             </div>
-            <div class="w-[90%] sm:w-3/4">
-                <label class="mb-1 inline-block" for="password">Password</label>
-                <input type="password" id="password" name="password" class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none py-2" required>
-            </div>
-            <button class="bg-black px-4 py-2 text-white mb-3 rounded-xl mx-4 hover:bg-white border hover:text-black border-black">Register</button>
 
-        </form>
-        <p class="my-6">Not Having an account <a class="text-blue-500 hover:underline" href="/user/signup">SignUp</a></p>
-
-    </section>
+            <img class="hidden md:block w-full md:w-1/2 h-full object-cover"
+                src="https://scontent.famd1-2.fna.fbcdn.net/v/t39.30808-6/452925431_1020228286770006_1678135576219625091_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=bBozDn0i6dsQ7kNvgGQ-rxc&_nc_zt=23&_nc_ht=scontent.famd1-2.fna&_nc_gid=AcDqU-U6x4ABKPZ3hSAWFfW&oh=00_AYCbpEtEesd2OtjgcEVoWszQZGbw-4A_W1mKHeKlbgL8kQ&oe=677A1670"
+                alt="user_img">
+        </section>
 </body>
 
 </html>

@@ -1,28 +1,37 @@
 <% layout('./main/layout') %>
-<section class="p-3 h-screen pb-16 overflow-auto">
-    <h1 class="text-xl font-bold my-2">Add new Post</h1>
-    <form action="/post/create" method="POST" enctype="multipart/form-data" data-image-required="true">
-        <label for="image" class=" font-medium">Add an image</label>
-        <div class="w-full h-60 bg-zinc-200 rounded-xl overflow-auto my-2">
-            <img id="image-preview"  class="w-full h-full object-contain hidden" src="" alt="new image">
-            <input id="image-input" class="hidden" type="file" name="photo" required>
-        </div>
-        <div class="flex items-center justify-around" >
-            <button id="upload-btn" type="button" class="bg-white text-black px-4 py-2 rounded-xl text-sm my-2 hover:text-black hover:bg-white border border-black" >Add</button>
-            <button id="remove-btn" type="button" class="bg-white text-black px-4 py-2 rounded-xl text-sm my-2 hover:text-black hover:bg-white border border-black" >Remove</button>
-        </div>
-        <div class="mb-2">
-            <label class="my-2 inline-block text-sm focus:outline-none font-medium" for="desc">Description(Optional)</label>
-            <textarea name="description" id="description" class="w-full bg-zinc-200 rounded-md pl-2 py-2 focus:outline-none" placeholder="Add description"></textarea>
-        </div>
-        <div class="mb-2">
-            <label class="my-2 inline-block text-sm font-medium" for="desc">City(Optional)</label>
-            <input class="w-full bg-zinc-200 rounded-md p-2 focus:outline-none" name="city" type="text" placeholder="Add a City">
-        </div>
-        <button class="bg-black w-full text-white px-4 py-2 rounded-xl text-sm my-4 hover:text-black hover:bg-white hover:border border-black" >Submit</button>
+    <section class="p-3 h-screen overflow-auto w-full md:w-1/2 lg:w-1/3 mx-auto">
+        <h1 class="text-xl font-bold my-2">Add new Post</h1>
+        <form id="toggleForm" action="/post/create" method="POST" enctype="multipart/form-data"
+            data-image-required="true">
+            <label for="image" class=" font-medium">Add an image</label>
+            <div class="w-full h-60 bg-[#1F1F22] rounded-xl overflow-auto my-2">
+                <img id="image-preview" class="w-full h-full object-contain hidden" src="" alt="new image">
+                <input id="image-input" class="hidden" type="file" name="photo" required>
+            </div>
+            <div class="flex items-center justify-around">
+                <button id="upload-btn" type="button"
+                    class="bg-white w-fit font-medium hover:bg-black hover:border border-white hover:text-white px-4 py-2 rounded-xl text-sm my-4 text-black">Add</button>
+                <button id="remove-btn" type="button"
+                    class="bg-white w-fit font-medium hover:bg-black hover:border border-white hover:text-white px-4 py-2 rounded-xl text-sm my-4 text-black">Remove</button>
+            </div>
+            <div class="mb-2">
+                <label class="my-2 inline-block text-sm focus:outline-none font-medium"
+                    for="desc">Description(Optional)</label>
+                <textarea name="description" id="description"
+                    class="w-full bg-[#1F1F22] rounded-md pl-2 py-2 focus:outline-none"
+                    placeholder="Add description"></textarea>
+            </div>
+            <div class="mb-2">
+                <label class="my-2 inline-block text-sm font-medium" for="desc">City(Optional)</label>
+                <input class="w-full bg-[#1F1F22] rounded-md p-2 focus:outline-none" name="city" type="text"
+                    placeholder="Add a City">
+            </div>
+            <button id="toggleButton"
+                class="bg-white w-full font-medium hover:bg-black hover:border border-white hover:text-white px-4 py-2 rounded-xl text-sm my-4 text-black">Submit</button>
+ 
+        </form>
+    </section>
 
-    </form>
-</section>
 
-
-<script src="/js/imageManager.js"></script>
+    <script src="/js/imageManager.js"></script>
+ 

@@ -1,10 +1,11 @@
 <% layout('./main/layout') %>
 
-    <section class="h-full w-full border border-black">
-        <div class="border-b border-black p-4 flex items-center">
+    <section class="h-full w-full mx-auto md:w-1/2 px-6 mx-auto overflow-auto">
+        <h2 class="font-semibold text-white text-2xl pt-6 pl-4" >Search</h2>
+        <div class="border-b border-black py-4 flex items-center">
             <form class="flex w-full gap-x-4" action="/user/search" method="POSt">
-                <input type="text" name="username" class="w-full bg-zinc-200 rounded-md py-2 px-4 focus:outline-none"
-                    placeholder="Seach a user ">
+                <input type="text" name="username" class="w-full bg-[#1F1F22] rounded-md py-2 px-4 focus:outline-none"
+                    placeholder="Seach a user">
                 <button>
                     <svg class="h-9 w-9 cursor-pointer" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -13,32 +14,32 @@
                         <g id="SVGRepo_iconCarrier">
                             <path
                                 d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-                                stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </g>
                     </svg>
                 </button>
             </form>
         </div>
-        <% if(posts) {%>
-        <div class="grid gap-2 p-4 grid-cols-3 ">
+        <% if(posts){%>
+        <div class="grid gap-2 py-4 grid-cols-3  ">
             <% for(let post of posts) {%>
                 <a href="/post/<%=post._id %>">
-                    <img class="h-48 bg-black object-contain" src="<%= post.photo.path %>" alt="images">
+                    <img class="h-52 w-52 bg-black object-cover rounded-md" src="<%= post.photo.path %>" alt="images">
                 </a>
                 <% } %>
         </div>
         <% } else if (users) { %>
             <%for(let user of users) {%>
         <a href="/user/profile/<%= user.username%>">
-            <div class="w-full flex items-center gap-x-4 p-4 cursor-pointer hover:bg-zinc-200  rounded-md">
-                <img class="w-12 h-12 rounded-full object-cover bg-red-500" src="<%= user.photo.path%>" alt="user_image">
+            <div class="w-full flex items-center gap-x-4 p-4 cursor-pointer hover:bg-[#1A1A1A]  rounded-md">
+                <img class="w-12 h-12 rounded-full object-cover " src="<%= user.photo.path%>" alt="user_image">
                 <p><%= user.username%></p>
             </div>
         </a>
         <% } %> 
         <% } else {%>
             <div class="p-6 flex items-center justify-center h-3/4 flex-col">
-                <img class="w-full" src="/img/no-user-found.jpg" alt="no-user-found-image">
+                <img class="w-full md:w-3/4" src="/img/no-user-found.jpg" alt="no-user-found-image">
                 <p class="font-bold"><%= message %></p>
             </div>
          <% } %>   

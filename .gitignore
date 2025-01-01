@@ -7,3 +7,5 @@ node_modules/
 
 # Optional: Ignore log files
 *.log
+
+workTodo.txt

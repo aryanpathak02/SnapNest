@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const Comment = require('../models/comments.modle');
+const Notification = require('../models/notification.model');
 
 
 const postSchema = new mongoose.Schema({
@@ -18,31 +19,34 @@ const postSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    comments : [{
-          type: Schema.Types.ObjectId,
+    comments: [{
+        type: Schema.Types.ObjectId,
         ref: 'Comment'
     }],
-    likes : [{
-          type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
-    savedPosts : [{
+    likes: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-  }],
+    }],
+    savedPosts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
 }, {
     timestamps: true,
 });
 
-postSchema.post('findOneAndDelete',async (post)=>{
-   if(!post)return;
+postSchema.post('findOneAndDelete', async (post) => {
+    if (!post) return;
 
-   try {
- 
+    try {
+        await Comment.deleteMany({ _id: { $in: post.comments } });
+        await Notification.deleteMany({ post: post._id });
 
- } catch (err) {
-    console.error('Error during post deletion cleanup:', err.message);
- }
+        console.log('Post and associated data (comments, notifications) deleted successfully');
+
+    } catch (err) {
+        console.error('Error during post deletion cleanup:', err.message);
+    }
 });
 
 const Post = mongoose.model('Post', postSchema);

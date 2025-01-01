@@ -19,11 +19,11 @@
             </svg>
         </div>
     </section>
-    <section id="postSection" class="h-screen overflow-auto pb-16 ">
-        <div class="border border-black  rounded-xl py-4 mt-2 m-2">
+    <section id="postSection" class="h-full w-full md:w-1/2 lg:w-1/3 mx-auto overflow-auto">
+        <div class="border border-black  rounded-xl py-4 mt-2 m-2 block md:hidden">
             <h1 class="text-xl font-bold text-center">SnapNest</h1>
         </div>
-        <div class="flex gap-2 overflow-x-auto my-4 px-2">
+        <!-- <div class="flex gap-2 overflow-x-auto my-4 px-2">
             <a href="/story/save">
                 <div
                     class="flex items-center justify-center w-20 p-5 cursor-pointer h-20 rounded-full bg-zinc-700 border border-black">
@@ -49,24 +49,30 @@
                 </div>
             </a>
             <% for(let status of statuses ) {%>
-            <div class="storys">
-                <img id="userStory" class="w-20 h-20 rounded-full object-cover cursor-pointer" src="<%= status.user.photo.path %>" alt="">
-                <p id="username" class="hidden"><%= status.user.username %></p>
-                <p id="time" class="hidden"><%= status.formattedCreatedAt %></p>
-                <img class="hidden" id="userimage" src="<%= status.photo.path %>" alt="user_status_image">
-            </div>
-           <% }%>
-        </div>
-
-
+                <div class="storys">
+                    <img id="userStory" class="w-20 h-20 rounded-full object-cover cursor-pointer"
+                        src="<%= status.user.photo.path %>" alt="">
+                    <p id="username" class="hidden">
+                        <%= status.user.username %>
+                    </p>
+                    <p id="time" class="hidden">
+                        <%= status.formattedCreatedAt %>
+                    </p>
+                    <img class="hidden" id="userimage" src="<%= status.photo.path %>" alt="user_status_image">
+                </div>
+                <% }%>
+        </div> -->
+     <h2 class="text-xl md:text-2xl font-bold my-6 ml-4">All Post</h2>
         <% for(let post of posts.reverse()) {%>
-            <div class="m-2 p-2 sm:p-5 sm:border border-black rounded-xl">
+            <% if(!post.user._id.equals(currentUser._id)) {%>
+            <div class="m-2 p-5 border bg-[#09090A] border-black rounded-xl">
+                <a href="/user/profile/<%= post.user.username %>">
                 <div class="flex text-sm gap-x-3">
                     <img class="h-12 w-12 rounded-full object-cover" loading="lazy" src="<%= post.user.photo.path %>"
                         alt="profile_pic">
                     <div>
                         <p class="font-medium">
-                            <%= post.user.username %> <span class="font-normal ml-1 text-zinc-600">
+                            <%= post.user.username %> <span class="font-normal ml-1 text-[#585877] font-semibold">
                                     <%= post.formattedCreatedAt %>
                                 </span>
                         </p>
@@ -75,18 +81,21 @@
                         </p>
                     </div>
                 </div>
+                </a>
                 <img class="my-4 w-full mx-auto rounded-xl object-contain" loading="lazy" src="<%= post.photo.path %>"
                     alt="image">
                 <div class="flex items-center justify-between mb-4">
                     <!-- like button  -->
                     <svg postId="<%= post._id %>" class="likeButton w-9 h-9 cursor-pointer" viewBox="0 0 24.00 24.00"
-                        fill="<%= post.likes.includes(currentUser._id) ? '#eb0000' :'none'%>" xmlns="http://www.w3.org/2000/svg">
+                        fill="<%= post.likes.includes(currentUser._id) ? '#eb0000' :'none'%>"
+                        xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
-                                stroke="<%= post.likes.includes(currentUser._id) ? '#eb0000' :'#000000'%>" stroke-width="1.056" stroke-linecap="round" stroke-linejoin="round">
+                                stroke="<%= post.likes.includes(currentUser._id) ? '#eb0000' :'#fff'%>"
+                                stroke-width="1.056" stroke-linecap="round" stroke-linejoin="round">
                             </path>
                         </g>
                     </svg>
@@ -102,7 +111,7 @@
                             <defs> </defs>
                             <g id="Page-1" stroke-width="0.00032" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                                 <g id="Icon-Set" sketch:type="MSLayerGroup"
-                                    transform="translate(-100.000000, -255.000000)" fill="#000000">
+                                    transform="translate(-100.000000, -255.000000)" fill="#fff">
                                     <path
                                         d="M116,281 C114.832,281 113.704,280.864 112.62,280.633 L107.912,283.463 L107.975,278.824 C104.366,276.654 102,273.066 102,269 C102,262.373 108.268,257 116,257 C123.732,257 130,262.373 130,269 C130,275.628 123.732,281 116,281 L116,281 Z M116,255 C107.164,255 100,261.269 100,269 C100,273.419 102.345,277.354 106,279.919 L106,287 L113.009,282.747 C113.979,282.907 114.977,283 116,283 C124.836,283 132,276.732 132,269 C132,261.269 124.836,255 116,255 L116,255 Z"
                                         id="comment-1" sketch:type="MSShapeGroup"> </path>
@@ -112,13 +121,14 @@
                     </svg>
                     <!-- saved button  -->
                     <svg class="savedPostBtn w-9 h-9 cursor-pointer" postid='<%= post._id %>' viewBox="0 0 24 24"
-                        fill="<%= post.savedPosts.includes(currentUser._id) ? '#00000' : 'none' %>" xmlns="http://www.w3.org/2000/svg">
+                        fill="<%= post.savedPosts.includes(currentUser._id) ? '#fff' : 'none' %>"
+                        xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
                             <path
                                 d="M5 6.2C5 5.07989 5 4.51984 5.21799 4.09202C5.40973 3.71569 5.71569 3.40973 6.09202 3.21799C6.51984 3 7.07989 3 8.2 3H15.8C16.9201 3 17.4802 3 17.908 3.21799C18.2843 3.40973 18.5903 3.71569 18.782 4.09202C19 4.51984 19 5.07989 19 6.2V21L12 16L5 21V6.2Z"
-                                stroke="#000000" stroke-width="1.2" stroke-linejoin="round"></path>
+                                stroke="#fff" stroke-width="1.2" stroke-linejoin="round"></path>
                         </g>
                     </svg>
                 </div>
@@ -129,9 +139,9 @@
                     <form class="w-full flex gap-x-3 my-4" action="/comment/<%= post._id %>" method="POST">
                         <img class="h-10 w-10 rounded-full object-cover" src="<%=currentUser.photo.path %>"
                             alt="user_profile">
-                        <input class="w-full bg-zinc-200 rounded-md pl-2 focus:outline-none" type="text" name="comment"
+                        <input class="w-full bg-[#1F1F22] rounded-md pl-2 focus:outline-none" type="text" name="comment"
                             placeholder="Add a Comment">
-                        <button>
+                        <button type="button" class="saveCommentButton">
                             <svg class="w-8 h-8 cursor-pointer" viewBox="0 0 24.00 24.00" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" stroke="#000000"
                                 stroke-width="0.00024000000000000003">
@@ -141,28 +151,28 @@
                                 <g id="SVGRepo_iconCarrier">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z"
-                                        fill="#000000"></path>
+                                        fill="#fff"></path>
                                 </g>
                             </svg>
                         </button>
                     </form>
                     <!-- comment sections  -->
-                   <% for(let comment  of post.comments){ %>
+                    <% for(let comment of post.comments){ %>
                         <div class="flex items-start justify-start gap-x-4 text-sm mt-2 mb-4 py-2">
                             <img class="h-10 w-10 rounded-full object-cover" src="<%= comment.user.photo.path %>"
                                 alt="user_profile">
                             <div>
                                 <p class="font-bold">
-                                    <%= comment.user.username %><span class="font-normal ml-2 text-zinc-600">
-                                        <%= comment.formattedCreatedAt %>
+                                    <%= comment.user.username %><span class="font-normal ml-2 text-[#585877] font-semibold">
+                                            <%= comment.formattedCreatedAt %>
                                         </span>
                                 </p>
                                 <p>
-                                   <%= comment.comment %>
+                                    <%= comment.comment %>
                                 </p>
                             </div>
                         </div>
-                    <% } %>
+                        <% } %>
                 </div>
                 <% if(post.description) {%>
                     <p><span class="font-semibold ">
@@ -173,11 +183,11 @@
                     <% } %>
 
             </div>
-
+            <% } %>
             <% } %>
     </section>
 
 
     <script src="/js/commentHandler.js"></script>
-    <script src="/js/likeAndsavedPost.js" ></script>
+    <script src="/js/likeAndsavedPost.js"></script>
     <script src="/js/storyHandler.js"></script>

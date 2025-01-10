@@ -9,7 +9,7 @@ function savePost(postId, btn) {
     const originalColor = btn.getAttribute('fill');
     btn.setAttribute('fill', '#000000'); 
 
-    sendPostRequest('http://localhost:8080/savedPost', postId)
+    sendPostRequest('http://snapnest-u9zi.onrender.com/savedPost', postId)
 
         .then(response => {
             console.log('Post save response:', response.data);
@@ -56,7 +56,7 @@ function likePost(postId, btn) {
     pathElement.setAttribute('fill', '#e00b0b');
     pathElement.setAttribute('stroke', 'none');
 
-    sendPostRequest('http://localhost:8080/like', postId)
+    sendPostRequest('http://snapnest-u9zi.onrender.com/like', postId)
 
         .then(response => {
             console.log('Post like response:', response.data);

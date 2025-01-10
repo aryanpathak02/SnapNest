@@ -1,8 +1,8 @@
 <% layout('./main/layout') %>
 
-    <section class="h-full w-full mx-auto md:w-1/2 px-6 mx-auto overflow-auto">
+    <section class="h-full w-full mx-auto md:w-1/2 md:px-6 mx-auto overflow-auto pb-16">
         <h2 class="font-semibold text-white text-2xl pt-6 pl-4" >Search</h2>
-        <div class="border-b border-black py-4 flex items-center">
+        <div class="border-b border-black py-4 px-2 flex items-center">
             <form class="flex w-full gap-x-4" action="/user/search" method="POSt">
                 <input type="text" name="username" class="w-full bg-[#1F1F22] rounded-md py-2 px-4 focus:outline-none"
                     placeholder="Seach a user">
@@ -20,15 +20,12 @@
                 </button>
             </form>
         </div>
-<<<<<<< HEAD
-        <% if(posts){%>
-        <div class="grid gap-2 py-4 grid-cols-3  ">
-            <% for(let post of posts) {%>
-=======
+
+
         <% if(posts) {%>
-        <div class="grid gap-2 p-4 grid-cols-3 ">
+        <div class="grid gap-2 p-2 md:p-4 grid-cols-3 ">
             <% for(let post of posts.reverse()) {%>
->>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
+
                 <a href="/post/<%=post._id %>">
                     <img class="h-52 w-52 bg-black object-cover rounded-md" src="<%= post.photo.path %>" alt="images">
                 </a>

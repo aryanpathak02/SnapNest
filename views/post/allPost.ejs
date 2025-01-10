@@ -1,6 +1,6 @@
 <% layout('./main/layout') %>
     <section id="storySection"
-        class="absolute w-full bg-contain {backhround image of userStiry} bg-no-repeat bg-center p-4 h-screen z-50 bg-zinc-600 hidden">
+        class="absolute w-full bg-contain {backhround image of userStiry} bg-no-repeat bg-center p-4 h-screen z-50 bg-zinc-600 hidden ">
         <div class="flex items-center gap-x-4 w-full ">
             <img id="userimage" class="h-14 w-14 bg-red-500 rounded-full object-cover" src="" alt="user_image">
             <div>
@@ -19,7 +19,7 @@
             </svg>
         </div>
     </section>
-    <section id="postSection" class="h-full w-full md:w-1/2 lg:w-1/3 mx-auto overflow-auto">
+    <section id="postSection" class="h-full w-full lg:w-1/2 xl:w-1/3 mx-auto overflow-auto pb-16">
         <div class="border border-black  rounded-xl py-4 mt-2 m-2 block md:hidden">
             <h1 class="text-xl font-bold text-center">SnapNest</h1>
         </div>
@@ -49,7 +49,7 @@
                 </div>
             </a>
             <% for(let status of statuses ) {%>
-<<<<<<< HEAD
+
                 <div class="storys">
                     <img id="userStory" class="w-20 h-20 rounded-full object-cover cursor-pointer"
                         src="<%= status.user.photo.path %>" alt="">
@@ -66,21 +66,9 @@
      <h2 class="text-xl md:text-2xl font-bold my-6 ml-4">All Post</h2>
         <% for(let post of posts.reverse()) {%>
             <% if(!post.user._id.equals(currentUser._id)) {%>
-            <div class="m-2 p-5 border bg-[#09090A] border-black rounded-xl">
-=======
-            <div class="storys">
-                <img id="userStory" class="w-16 h-16 rounded-full object-cover cursor-pointer" src="<%= status.user.photo.path %>" alt="">
-                <p id="username" class="hidden"><%= status.user.username %></p>
-                <p id="time" class="hidden"><%= status.formattedCreatedAt %></p>
-                <img class="hidden" id="userimage" src="<%= status.photo.path %>" alt="user_status_image">
-            </div>
-           <% }%>
-        </div>
+            <div class="m-2 p-3 md:p-5 border bg-[#09090A] border-black rounded-xl">
 
-
-        <% for(let post of posts.reverse()) {%>
-            <div class="m-2 p-5 border border-black rounded-xl">
->>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
+        
                 <a href="/user/profile/<%= post.user.username %>">
                 <div class="flex text-sm gap-x-3">
                     <img class="h-12 w-12 rounded-full object-cover" loading="lazy" src="<%= post.user.photo.path %>"
@@ -96,11 +84,9 @@
                         </p>
                     </div>
                 </div>
-<<<<<<< HEAD
+
                 </a>
-=======
-                 </a>
->>>>>>> 03461dd4722c8f47dd2999f6fdb1aee9486b1369
+
                 <img class="my-4 w-full mx-auto rounded-xl object-contain" loading="lazy" src="<%= post.photo.path %>"
                     alt="image">
                 <div class="flex items-center justify-between mb-4">

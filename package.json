@@ -1,5 +1,5 @@
 {
-  "name": "SnapNest",
+  "name":"SnapNest",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
